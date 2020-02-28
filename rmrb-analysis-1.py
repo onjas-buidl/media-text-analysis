@@ -1,9 +1,10 @@
 #%%
 import jieba
 import jieba.posseg as pseg
+import tqdm
+#%%
 import collections
 import nltk
-import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
 import time
@@ -60,25 +61,22 @@ t = time.time()
 pd.Series(words).value_counts()
 print(time.time() - t)
 
-
-
-
-
-
 #%% get the file path
 import os
-path = 'working_data/'
+path = 'rmrb-full_data/'
 month_folders = [i for i in os.walk(path)][0][1]
 len(month_folders)
+# select some months to do a specimen analysis
+month_folders = [i for i in month_folders if '05月' in i]
+month_folders = sorted(month_folders)
 #%% stop words
-with open('stop_words.txt', 'r') as file:
+with open('Data-other/中文停用词表.txt', 'r') as file:
     stop_words = file.read()
 stop_words = stop_words.split('\n')
-stop_words = stop_words + ['#', '##', '###']
+# stop_words = stop_words + ['#', '##', '###']
 stop_words = np.array(stop_words)
 
-#%%
-
+#%% formal analysis 
 text = ''
 word_count_collection = {}
 gini_collection = {}

@@ -1,4 +1,7 @@
 rmrb-full_data/
+text_alys/
+.ipynb_checkpoints/
+.DS_Store
 
 
 # Byte-compiled / optimized / DLL files
